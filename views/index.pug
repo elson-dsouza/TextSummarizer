@@ -1,0 +1,30 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Text summarizer
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', rel='stylesheet')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .navbar-header
+        p.navbar-brand Welcome to Text Summarizer
+    .container
+      br
+      br
+      br
+      br
+      #iserror
+      if iserror
+        .alert.alert-danger
+          strong #{msg}
+      #isSuccess
+      if isSuccess
+        .alert.alert-success
+          strong #{msg}
+      form(method='post', action='/',id='inputData')
+        .form-group
+          label(for='input') Enter the text to summarize:
+          textarea#input.form-control(rows='20',name='input') #{res}
+        button.btn-success.btn-lg.btn-block(type='submit',form='inputData',value='Submit') Submit

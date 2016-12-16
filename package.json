@@ -1,0 +1,21 @@
+{
+  "name": "TextSummarizer",
+  "version": "1.0.0",
+  "description": "Summarizes text using a naive summarization algorithm",
+  "engines": {
+    "node": "6.9.2"
+  },
+  "scripts": {
+    "start": "node server"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "lodash": "^4.17.2",
+    "path": "^0.12.7",
+    "pug": "^2.0.0-beta6",
+    "sentence-tokenizer": "0.0.7"
+  },
+  "author": "Elson D'Souza and Apeksha Mahale",
+  "license": "MIT"
+}
