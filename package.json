@@ -6,7 +6,7 @@
     "node": "6.9.2"
   },
   "scripts": {
-    "start": "node server"
+    "start": "node server.js"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
