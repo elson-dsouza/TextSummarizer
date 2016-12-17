@@ -17,8 +17,10 @@ function splitContentToParagraphs(content, callback) {
 }
 
 function intersect_safe(a, b) {
-  var ai= 0, bi=0;
-  var result = [];
+    var ai= 0, bi=0;
+    var result = [];
+    _.sortBy(a,function(s){return s;});
+    _.sortBy(b,function(s){return s;});
 
 	while(ai < a.length && bi < b.length){
 		if      (a[ai] < b[bi] ){ ai++; }
@@ -37,7 +39,7 @@ function intersect_safe(a, b) {
 function sentencesIntersection(sent1, sent2, callback) {
 	var s1 = sent1.split(' '),
 	    s2 = sent2.split(' '),
-	    intersect  = intersect_safe(s1, s2),
+        intersect  = intersect_safe(s1, s2),
 	    spliceHere = ((s1.length + s2.length) / 2);
 
 	callback(intersect.length);
@@ -119,36 +121,36 @@ function getSentencesRanks(content, callback) {
             _val       = [];
 
         // Assign values as a 0 matrix of size r*r
-        _.each(r, function(x) {
+        for(var i=0;i<n;i++) {
 			_val = [];
-			_.each(r, function(y) {
+			for(var j=0;j<n;j++){
 				_val.push(0);
-			});
+			}
 			values.push(_val);
-		});
+		}
 
 		// Assign each score to each sentence
-		_.each(r, function(i) {
-			_.each(r, function(j) {
+		for(var i=0;i<n;i++) {
+			for(var j=0;j<n;j++) {
 				sentencesIntersection(sentences[i], sentences[j], function(intersection) {
 					values[i][j] = intersection;
 				});
-			});
-		});
+			}
+		}
 
 		// Build sentence score dictionary
 		var sentences_dict = {},
             score = 0;
-		_.some(r, function(i) {
+		for(var i=0;i<n;i++) {
 			score = 0;
-			_.some(r, function(j) {
+			for(var j=0;j<n;j++) {
 				if(i != j) score += values[i][j];
-			});
+			}
 
 			formatSentence(sentences[i], function(strip_s) {
 				sentences_dict[strip_s] = score;
 			});
-		});
+		}
 
 		callback(sentences_dict);
 	});
@@ -161,11 +163,11 @@ exports.summarize = function(content, callback) {
 
 	getSentencesRanks(content, function(dict) {
 		splitContentToParagraphs(content, function(paragraphs) {
-			_.each(paragraphs, function(p) {
-				getBestSentence(p, dict, function(sentence) {
+			for(p in paragraphs) {
+				getBestSentence(paragraphs[p], dict, function(sentence) {
 					if(sentence) summary.push(sentence);
 				});
-			});
+			}
 			callback(summary.join(" "));
 		});
 	});
