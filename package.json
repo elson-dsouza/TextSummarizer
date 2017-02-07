@@ -2,9 +2,6 @@
   "name": "TextSummarizer",
   "version": "1.0.0",
   "description": "Summarizes text using a naive summarization algorithm",
-  "engines": {
-    "node": "6.9.1"
-  },
   "scripts": {
     "start": "node server.js"
   },
