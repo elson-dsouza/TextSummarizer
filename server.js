@@ -10,8 +10,7 @@ var app = express();
 var server = app.listen(port, function () {
 	var host = server.address().address;
 	var port = server.address().port;
-
-  console.log("\nListening at http://%s:%s\n",host ,port);
+  	console.log("\nListening at http://%s:%s\n",host ,port);
 });
 
 // view engine setup
