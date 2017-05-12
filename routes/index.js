@@ -48,7 +48,7 @@ router.post('/',urlencodedParser, function(req, res) {
 });
 
 router.get('/favicon.ico', function (req, res) {
-  res.sendFile(path.resolve( __dirname, "/views/favicon.ico"));
+  res.sendFile(path.resolve( __dirname, "../views/favicon.ico"));
 });
 
 module.exports = router;
