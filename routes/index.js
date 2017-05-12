@@ -47,4 +47,8 @@ router.post('/',urlencodedParser, function(req, res) {
     }
 });
 
+app.get('/favicon.ico', function (req, res) {
+  res.sendFile('favicon.ico');
+});
+
 module.exports = router;
